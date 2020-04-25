@@ -1,0 +1,15 @@
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.deps.json
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.dll
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csprojAssemblyReference.cache
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csproj.CoreCompileInputs.cache
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfoInputs.cache
+C:\Source\Other\SourcedSharpOpenSourceBased\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfo.cs
+C:\Source\Other\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.deps.json
+C:\Source\Other\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.dll
+C:\Source\Other\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.pdb
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csprojAssemblyReference.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csproj.CoreCompileInputs.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfoInputs.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfo.cs
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.dll
+C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.pdb

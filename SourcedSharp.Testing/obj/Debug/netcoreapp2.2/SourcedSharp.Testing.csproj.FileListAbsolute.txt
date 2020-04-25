@@ -1,0 +1,9 @@
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\bin\Debug\netcoreapp2.2\SourcedSharp.Testing.deps.json
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\bin\Debug\netcoreapp2.2\SourcedSharp.Testing.dll
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.csprojAssemblyReference.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.csproj.CoreCompileInputs.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.AssemblyInfoInputs.cache
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.AssemblyInfo.cs
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\bin\Debug\netcoreapp2.2\SourcedSharp.Testing.pdb
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.dll
+C:\Source\Other\SourcedSharp\SourcedSharp\SourcedSharp.Testing\obj\Debug\netcoreapp2.2\SourcedSharp.Testing.pdb
