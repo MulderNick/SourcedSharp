@@ -10,7 +10,7 @@ namespace SourcedSharp.Testing.FunctionalTests.Core
     {
         private IEventRepository _eventRepository = new EventRepository();
 
-        // ToDo: EventRepo should be fast and mind need middleware like elastic search or redis
+        // ToDo: EventRepo should be fast and might need middleware like elastic search or redis
         public IEnumerable<IEvent> GetEventsForProjector(IProjector projector)
         {
             var events = _eventRepository.GetEvents();
@@ -27,4 +27,4 @@ namespace SourcedSharp.Testing.FunctionalTests.Core
             return false;
         }
     }
-}
+}          

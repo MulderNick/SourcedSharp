@@ -18,7 +18,7 @@ namespace SourcedSharp.Testing.FunctionalTests.Domain
         {
             var @event = _entityAggregate.CreateEntity(message.Id, message.Name);
             var eventStore = new Core.EventStore();
-            eventStore.TryCommitEvent(new EntitiesProjector(new EntitiesProjection(), @event))
+            //eventStore.TryCommitEvent(new EntitiesProjector(new EntitiesProjection(), @event));
         }
 
         public void Handle(RenameEntity message)

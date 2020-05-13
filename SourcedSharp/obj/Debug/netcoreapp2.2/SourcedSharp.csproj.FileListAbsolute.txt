@@ -13,3 +13,12 @@ C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.A
 C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfo.cs
 C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.dll
 C:\Source\Other\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.pdb
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.deps.json
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.dll
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\bin\Debug\netcoreapp2.2\SourcedSharp.pdb
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csprojAssemblyReference.cache
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfoInputs.cache
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.AssemblyInfo.cs
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.dll
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.pdb
+C:\Users\redlu\source\repos\SourcedSharp\SourcedSharp\obj\Debug\netcoreapp2.2\SourcedSharp.csproj.CoreCompileInputs.cache
