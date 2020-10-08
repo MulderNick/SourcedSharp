@@ -1,6 +1,4 @@
-﻿using SourcedSharp.Messages;
-
-namespace SourcedSharp.Events
+﻿namespace SourcedSharp.Core.Messages.Events
 {
     /*
      * An event is responsible for transporting occured facts

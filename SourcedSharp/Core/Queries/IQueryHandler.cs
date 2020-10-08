@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.Queries
+﻿namespace SourcedSharp.Core.Queries
 {
     /*
      * A Query Handler is responsible for answering Query via the right projections/read-models

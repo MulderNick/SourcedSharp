@@ -1,5 +1,5 @@
 ﻿using System;
-using SourcedSharp.Commands;
+using SourcedSharp.Core.Messages.Commands;
 
 namespace SourcedSharp.Testing.FunctionalTests.Public.Commands
 {

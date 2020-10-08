@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SourcedSharp.Commands;
-using SourcedSharp.Messages;
+using SourcedSharp.Core.Messages;
 
-namespace SourcedSharp.MessageBus
+namespace SourcedSharp.Core.MessageBroker
 {
     public class MessageBroker : IMessageBroker
     {

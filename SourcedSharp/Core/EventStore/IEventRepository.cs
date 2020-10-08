@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SourcedSharp.Events;
+using SourcedSharp.Core.Messages.Events;
 
-namespace SourcedSharp.EventStore
+namespace SourcedSharp.Core.EventStore
 {
     /*
      * An Event Repository is responsible for persisting events committed by the EventStore

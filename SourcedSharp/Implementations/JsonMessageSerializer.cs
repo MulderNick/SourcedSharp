@@ -2,8 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using SourcedSharp.Core.Messages;
 using SourcedSharp.Core.Utils;
-using SourcedSharp.Messages;
 
 namespace SourcedSharp.Implementations
 {

@@ -1,4 +1,4 @@
-﻿using SourcedSharp.Messages;
+﻿using SourcedSharp.Core.Messages;
 
 namespace SourcedSharp.Core.Utils
 {

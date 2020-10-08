@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SourcedSharp.Events;
+using SourcedSharp.Core.Messages.Events;
 
 namespace SourcedSharp.Testing.FunctionalTests.Public.Events
 {

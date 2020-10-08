@@ -1,6 +1,4 @@
-﻿using SourcedSharp.Messages;
-
-namespace SourcedSharp.Commands
+﻿namespace SourcedSharp.Core.Messages.Commands
 {
     /*
      * Commands are responsible for carrying actions across the system.

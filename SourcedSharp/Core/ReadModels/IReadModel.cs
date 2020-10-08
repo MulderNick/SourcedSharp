@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.ReadModels
+﻿namespace SourcedSharp.Core.ReadModels
 {
     /*
      * ToDo: check if read models are needed or if they are the same as projection

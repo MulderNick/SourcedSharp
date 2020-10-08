@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SourcedSharp.Messages;
+using SourcedSharp.Core.Messages;
 
-namespace SourcedSharp.MessageBus
+namespace SourcedSharp.Core.MessageBroker
 {
     /*
      * A message bus is responsible for making messages available to listeners

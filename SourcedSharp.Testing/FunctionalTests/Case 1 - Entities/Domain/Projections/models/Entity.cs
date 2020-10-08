@@ -1,5 +1,5 @@
 ﻿using System;
-using SourcedSharp.ReadModels;
+using SourcedSharp.Core.ReadModels;
 
 namespace SourcedSharp.Testing.FunctionalTests.Domain.Projections.models
 {

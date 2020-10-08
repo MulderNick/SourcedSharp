@@ -17,4 +17,8 @@
     <ProjectReference Include="..\SourcedSharp\SourcedSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UnitTests\Bus\" />
+  </ItemGroup>
+
 </Project>

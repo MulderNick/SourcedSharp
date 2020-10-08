@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SourcedSharp.Events;
-using SourcedSharp.EventStore;
-using SourcedSharp.Projections;
+using SourcedSharp.Core.EventStore;
+using SourcedSharp.Core.Messages.Events;
+using SourcedSharp.Core.Projections;
 
 namespace SourcedSharp.Testing.FunctionalTests.Core
 {

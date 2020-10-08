@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.Messages
+﻿namespace SourcedSharp.Core.Messages
 {
     public interface IMessage
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http.Headers;
-using SourcedSharp.Events;
-using SourcedSharp.EventStore;
+using SourcedSharp.Core.EventStore;
+using SourcedSharp.Core.Messages.Events;
 
 namespace SourcedSharp.Testing.FunctionalTests.Core
 {

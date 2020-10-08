@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.ProcessManagers
+﻿namespace SourcedSharp.Core.ProcessManagers
 {
     /*
      * A Process Manager is responsible for handling complex processes across multiple aggregates and Apply EventStore consistency with the EventStore

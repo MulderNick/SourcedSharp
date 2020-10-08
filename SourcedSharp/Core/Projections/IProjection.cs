@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.Projections
+﻿namespace SourcedSharp.Core.Projections
 {
     /*
      * A Projection is responsible for holding states created by projectors 

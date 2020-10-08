@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using SourcedSharp.Events;
-
-namespace SourcedSharp.MessageBus
+﻿namespace SourcedSharp.Core.MessageBroker
 {
     public interface IEventBus
     {

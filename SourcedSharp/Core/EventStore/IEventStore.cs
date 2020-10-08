@@ -1,4 +1,4 @@
-﻿namespace SourcedSharp.EventStore
+﻿namespace SourcedSharp.Core.EventStore
 {
     /*
      * An event store is responsible for maintaining Write Side consistency and for committing and retrieving events
