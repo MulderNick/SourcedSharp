@@ -7,7 +7,7 @@ Feedback is welcome
 
 # ToDo:
 - Add Tests when framework structure has taken shape
-- Move example projects to repo.
+- Move example projects to separate repo's.
 - Add more documentation
 
 
