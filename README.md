@@ -6,7 +6,6 @@ It is currently in an early state. However, if everything works out as planned, 
 Feedback is welcome
 
 # ToDo:
-- # Add proper gitignore!!!!!!
 - Add Tests when framework structure has taken shape
 - Move example projects to separate repo's.
 - Add more documentation
