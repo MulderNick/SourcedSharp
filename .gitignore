@@ -17,8 +17,9 @@ nupkg/
 # User-specific files
 *.suo
 *.user
-*.userosscache
+*.userosscac
 *.sln.docstates
+.localhistory
 
 # Build results
 [Dd]ebug/
