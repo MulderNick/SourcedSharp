@@ -1,5 +1,6 @@
 ﻿using System;
 using EntityTestApplication.Entity.Public.Events;
+using SourcedSharp.Core.EventStore;
 using SourcedSharp.Core.Projections;
 
 namespace EntityTestApplication.Entity.Entity
@@ -9,7 +10,7 @@ namespace EntityTestApplication.Entity.Entity
         IApply<AttributeRemovedFromEntity>,
         IApply<AttributeSetOnEntity>
     {
-        public EntityProjector(Guid projectionId) : base(projectionId)
+        public EntityProjector(Guid projectionId, IEventStore eventStore, object snapshotStore) : base(projectionId, eventStore, snapshotStore)
         {
         }
 

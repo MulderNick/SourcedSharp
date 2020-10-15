@@ -1,6 +1,5 @@
 ﻿using System;
-using EntityTestApplication.Entity.Entities;
-using EntityTestApplication.Entity.Entities.AggregateComponents.State;
+using EntityTestApplication.Entity.Public.Commands;
 using AttributeContext = EntityTestApplication.Attribute.Context;
 using EntityContext = EntityTestApplication.Entity.Context;
 using SourcedSharp.Core.Solution;
@@ -15,7 +14,10 @@ namespace EntityTestApplication
             solution.AddContext<EntityContext>();
             solution.AddContext<AttributeContext>();
 
-            var test = new EntitiesProjector(new Guid());
+
+            solution.ExecuteCommand(new CreateEntity(Guid.NewGuid(), "Name1"));
+            solution.ExecuteCommand(new CreateEntity(Guid.NewGuid(), "Name2"));
+            solution.ExecuteCommand(new CreateEntity(Guid.NewGuid(), "Name2"));
         }
     }
 }

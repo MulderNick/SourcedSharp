@@ -1,25 +1,29 @@
 ﻿using System;
-using SourcedSharp.Implementations.Bus;
-using SourcedSharp.Implementations.Bus.rabbitMQ;
+using Microsoft.Extensions.DependencyInjection;
+using SourcedSharp.Core.MessageBroker;
 
 namespace SourcedSharp.Core.Solution
 {
     public class SolutionContext
     {
-        private CommandBus CommandBus;
-        private EventBus EventBus; //?
-        private QueryBus QueryBus; //?
+        public IServiceProvider ServiceProvider;
+
+        public SolutionContext(IServiceProvider serviceProvider)
+        {
+            ServiceProvider = serviceProvider;
+        }
 
         public CommandRegistrant<TCommandHandler> With<TCommandHandler>()
         {
-            return new CommandRegistrant<TCommandHandler>(CommandBus);
+            ICommandBus commandBus = ServiceProvider.GetService<ICommandBus>();
+            return new CommandRegistrant<TCommandHandler>(commandBus);
         }
     }
 
     public class CommandRegistrant<TCommandHandler>
     {
-        private CommandBus CommandBus;
-        public CommandRegistrant(CommandBus commandBus)
+        private ICommandBus CommandBus;
+        public CommandRegistrant(ICommandBus commandBus)
         {
             CommandBus = commandBus;
         }
@@ -33,8 +37,8 @@ namespace SourcedSharp.Core.Solution
 
         public void RegisterCommandHandler<TCommand>()
         {
-            var commandProcessor = "lambdaFunction";
-            //CommandBus.RegisterHandlerFor<TCommand>();
+            var commandHandlerType = typeof(TCommandHandler);
+            CommandBus.RegisterHandlerFor<TCommand>(commandHandlerType);
         }
     }
 }

@@ -5,11 +5,11 @@ namespace EntityTestApplication.Entity.Public.Commands
 {
     public class DeleteEntity : ICommand
     {
-        public Guid Id;
+        public Guid EntityId;
 
-        public DeleteEntity(Guid id)
+        public DeleteEntity(Guid entityId)
         {
-            Id = id;
+            EntityId = entityId;
         }
     }
 }

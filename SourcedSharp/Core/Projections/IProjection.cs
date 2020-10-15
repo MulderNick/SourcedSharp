@@ -5,6 +5,6 @@
      */
     public interface IProjection
     {
-        //int NumberOfEventsHandled { get; set; }
+        int NumberOfEventsHandled { get; set; }
     }
 }

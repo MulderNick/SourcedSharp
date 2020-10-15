@@ -1,13 +1,16 @@
-﻿using System.Linq;
-using EntityTestApplication.Entity.Entities.AggregateComponents.State;
+﻿using System;
+using System.Linq;
+using EntityTestApplication.Entity.Entities.State;
 using SourcedSharp.Core.Aggregates;
 using SourcedSharp.Core.Exceptions;
 
-namespace EntityTestApplication.Entity.Entities.AggregateComponents
+namespace EntityTestApplication.Entity.Entities.Rules
 {
-    public class EntitiesAggregateRuleVerifier : AggregateRuleVerifier
+    public class EntitiesAggregateRuleVerifier : AggregateRuleVerifier<EntitiesProjection>
     {
-        public EntitiesProjection State;
+        public EntitiesAggregateRuleVerifier(EntitiesProjection projection) : base(projection)
+        {
+        }
 
         public void EntityNameIsUnique(string name)
         {
@@ -17,10 +20,23 @@ namespace EntityTestApplication.Entity.Entities.AggregateComponents
                 throw new EntityNameNotUniqueException();
             }
         }
+
+        public void EntityExists(Guid entityId)
+        {
+            var entityExists = State.Entities.ContainsKey(entityId);
+            if (!entityExists)
+            {
+                throw new EntityNotFoundException();
+            }
+        }
     }
 
 
     public class EntityNameNotUniqueException : DomainException
+    {
+
+    }
+    public class EntityNotFoundException : DomainException
     {
 
     }

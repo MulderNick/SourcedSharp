@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SourcedSharp.Core.Projections;
 
-namespace EntityTestApplication.Entity.Entities.AggregateComponents.State
+namespace EntityTestApplication.Entity.Entities.State
 {
     public class EntitiesProjection : Projection, IProjection
     {

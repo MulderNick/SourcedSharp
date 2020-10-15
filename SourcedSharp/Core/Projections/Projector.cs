@@ -19,11 +19,12 @@ namespace SourcedSharp.Core.Projections
             set => Projection = (TProjection)value;
         }
 
-        public IEventStore EventsStore;
+        public IEventStore EventStore;
 
-        public Projector(Guid projectionId)
+        public Projector(Guid projectionId, IEventStore eventStore)
         {
             ProjectionId = projectionId;
+            EventStore = eventStore;
             Projection = CreateProjection();
         }
 

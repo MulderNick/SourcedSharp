@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="FunctionalTests\Case 1 - Entities\" />
     <Folder Include="UnitTests\Bus\" />
   </ItemGroup>
 

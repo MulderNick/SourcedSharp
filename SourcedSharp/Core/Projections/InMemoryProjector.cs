@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using SourcedSharp.Core.EventStore;
 using SourcedSharp.Core.Messages.Events;
 
 namespace SourcedSharp.Core.Projections
 {
     public class InMemoryProjector<TProjection> : Projector<TProjection> where TProjection : IProjection
     {
-        public InMemoryProjector(Guid projectionId) : base(projectionId)
+        
+        public InMemoryProjector(Guid projectionId, IEventStore eventStore) : base(projectionId, eventStore)
         {
-            LoadProjectionFromCache();
-            ApplyNewEvents();
+            Rehydrate();
         }
 
-        private void ApplyNewEvents()
+        private void Rehydrate()
         {
-        }
-
-        private void LoadProjectionFromCache()
-        {
-
+            var events = EventStore.GetEvents();
+            ApplyEvents(events);
         }
     }
 }

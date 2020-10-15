@@ -1,6 +1,8 @@
-﻿namespace SourcedSharp.Implementations.Bus.rabbitMQ
+﻿using SourcedSharp.Core.MessageBroker;
+
+namespace SourcedSharp.Implementations.Bus.rabbitMQ
 {
-    public class QueryBus
+    public class QueryBus : IQueryBus
     {
         
     }

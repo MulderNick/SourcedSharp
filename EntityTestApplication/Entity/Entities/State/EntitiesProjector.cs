@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using EntityTestApplication.Entity.Public.Events;
+using SourcedSharp.Core.EventStore;
 using SourcedSharp.Core.Messages.Events;
 using SourcedSharp.Core.Projections;
 
-namespace EntityTestApplication.Entity.Entities.AggregateComponents.State
+namespace EntityTestApplication.Entity.Entities.State
 {
     public class EntitiesProjector : InMemoryProjector<EntitiesProjection>,
         IApply<EntityCreated>,
         IApply<EntityDeleted>
     {
-        public EntitiesProjector(Guid projectionId) : base(projectionId)
+        public EntitiesProjector(Guid projectionId, IEventStore eventStore) : base(projectionId, eventStore)
         {
-            var events = new List<IEvent>()
-            {
-                new EntityCreated(Guid.NewGuid(), "name")
-            };
-            ApplyEvents(events);
         }
 
         public void Apply(EntityCreated @event)

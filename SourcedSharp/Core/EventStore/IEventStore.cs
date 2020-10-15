@@ -1,4 +1,7 @@
-﻿namespace SourcedSharp.Core.EventStore
+﻿using System.Collections.Generic;
+using SourcedSharp.Core.Messages.Events;
+
+namespace SourcedSharp.Core.EventStore
 {
     /*
      * An event store is responsible for maintaining Write Side consistency and for committing and retrieving events
@@ -8,6 +11,7 @@
      */
     public interface IEventStore
     {
-        
+        void Commit(IEnumerable<IEvent> events);
+        IEnumerable<IEvent> GetEvents();
     }
 }

@@ -5,12 +5,12 @@ namespace EntityTestApplication.Entity.Public.Commands
 {
     public class CreateEntity : ICommand
     {
-        public Guid Id;
+        public Guid EntityId;
         public string Name;
 
-        public CreateEntity(Guid id, string name)
+        public CreateEntity(Guid entityId, string name)
         {
-            Id = id;
+            EntityId = entityId;
             Name = name;
         }
     }

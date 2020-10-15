@@ -1,5 +1,6 @@
 ﻿using EntityTestApplication.Entity.Entities;
 using EntityTestApplication.Entity.Public.Commands;
+using SourcedSharp.Core.MessageBroker;
 using SourcedSharp.Core.Solution;
 using SourcedSharp.Core.Solution.Context;
 

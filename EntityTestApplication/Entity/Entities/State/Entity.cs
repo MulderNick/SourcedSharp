@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EntityTestApplication.Entity.Entities.AggregateComponents.State
+namespace EntityTestApplication.Entity.Entities.State
 {
     public class Entity
     {

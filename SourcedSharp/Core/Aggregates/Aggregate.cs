@@ -1,27 +1,51 @@
 ﻿using System;
 using System.Data;
 using System.Security.Cryptography.X509Certificates;
+using SourcedSharp.Core.Messages.Commands;
 using SourcedSharp.Core.Projections;
 
 namespace SourcedSharp.Core.Aggregates
 {
     // ToDo: See if passed generics can be minimized
-    public class Aggregate<TProjector, TVerifier> 
+    public class Aggregate<TProjector, TVerifier> : IAggregate
         where TProjector : IProjector
-        where TVerifier : IAggregateRuleVerifier
+        where TVerifier : IAggregateRuleVerifier 
     {
         protected TProjector Projector;
         protected TVerifier Verify;
 
-        public Aggregate(Guid id)
+        private Guid _aggregateId;
+        protected Guid AggregateId
         {
-            LoadProjection(id);
+            get
+            {
+                if (_aggregateId == null)
+                {
+                    throw new AggregateException("AggregateId not set");
+                }
+                return _aggregateId;
+            }
+            set
+            {
+                _aggregateId = value;
+                InitAggregate();
+            }
+        }
+
+        private void InitAggregate()
+        {
+            LoadProjection();
             InitVerifier();
         }
 
-        public void LoadProjection(Guid aggregateId)
+        protected void HandleCommandFor(Guid aggregateId)
         {
-            Projector = (TProjector)Activator.CreateInstance(typeof(TProjector), aggregateId);
+            AggregateId = aggregateId;
+        }
+
+        public void LoadProjection()
+        {
+            Projector = ProjectorFactory.GetProjector<TProjector>(AggregateId);
         }
 
         public void InitVerifier()
