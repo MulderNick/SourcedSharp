@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SourcedSharp.Core.Messages.Events;
 
 namespace SourcedSharp.Core.EventStore
 {
     public class EventStore : IEventStore
     {
-        public object EventRepository;
+        public IEventRepository EventRepository;
 
-        public List<IEvent> TempEvents = new List<IEvent>();
-
-        public void Commit(IEnumerable<IEvent> events)
+        public EventStore(IEventRepository eventRepository)
         {
-            TempEvents.AddRange(events);
+            EventRepository = eventRepository;
         }
 
-        public IEnumerable<IEvent> GetEvents()
+
+        public async Task Commit(IEnumerable<IEvent> events)
         {
-            return TempEvents;
+            await EventRepository.CommitEvents(events);
+        }
+
+        public async Task<IEnumerable<IEvent>> GetEvents()
+        {
+            return await EventRepository.GetEvents();
         }
     }
 }

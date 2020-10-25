@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SourcedSharp.Core.Messages.Events;
 
 namespace SourcedSharp.Core.EventStore
@@ -8,7 +9,7 @@ namespace SourcedSharp.Core.EventStore
      */
     public interface IEventRepository
     {
-        IEnumerable<IEvent> GetEvents();
-        bool AddEvent(IEvent @Event);
+        Task<IEnumerable<IEvent>> GetEvents();
+        Task CommitEvents(IEnumerable<IEvent> events);
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using SourcedSharp.Core.Aggregates.Projection;
 using SourcedSharp.Core.EventStore;
 using SourcedSharp.Core.Exceptions;
 
 namespace SourcedSharp.Core.Projections
 {
-    // ToDo: Add option for custom projector types?
+    // ToDo: Add option to register custom projector types?
     public static class ProjectorFactory
     {
         private static IEventStore _eventStore;
@@ -16,19 +20,34 @@ namespace SourcedSharp.Core.Projections
             _snapshotCache = snapshotCache;
         }
 
-        public static TProjector GetProjector<TProjector>(Guid projectionId)
+        // ToDo: clean if statements
+        public static async Task<TProjector> GetProjector<TProjector>(Guid projectionId)
         {
             var projectorType = typeof(TProjector);
-            
+            var initMethod = projectorType.GetMethod("Initialize");
 
-            if (ProjectorTypeIsTypeOfGenericBase(projectorType, typeof(InMemoryProjector<>)))
+            if (ProjectorIsTypeOfGenericBase(projectorType, typeof(InMemoryProjector<>)))
             {
-                return CreateInstance<TProjector>(projectionId, _eventStore);
+                
+                var instance = CreateInstance<TProjector>(projectionId, _eventStore);
+                var task = (Task)initMethod.Invoke(instance, null);
+                await task;
+                return instance;
             }
             
-            if (ProjectorTypeIsTypeOfGenericBase(projectorType, typeof(SnapshotProjector<>)))
+            if (ProjectorIsTypeOfGenericBase(projectorType, typeof(SnapshotProjector<>)))
             {
-                return CreateInstance<TProjector>(projectionId, _eventStore, _snapshotCache);
+                var instance = CreateInstance<TProjector>(projectionId, _eventStore, _snapshotCache);
+                var task = (Task)initMethod.Invoke(instance, null);
+                await task;
+                return instance;
+            }            
+            if (ProjectorIsTypeOfGenericBase(projectorType, typeof(AggregateProjector<>)))
+            {
+                var instance = CreateInstance<TProjector>(projectionId, _eventStore, _snapshotCache);
+                var task = (Task)initMethod.Invoke(instance, null);
+                await task;
+                return instance;
             }
             throw new SolutionException("Unregistered ProjectionType");
         }
@@ -38,7 +57,7 @@ namespace SourcedSharp.Core.Projections
             return (TProjector)Activator.CreateInstance(typeof(TProjector), args);
         }
 
-        private static bool ProjectorTypeIsTypeOfGenericBase(Type projectorType, Type GenericBase)
+        private static bool ProjectorIsTypeOfGenericBase(Type projectorType, Type GenericBase)
         {
             return projectorType.BaseType.GetGenericTypeDefinition().IsAssignableFrom(GenericBase);
         }

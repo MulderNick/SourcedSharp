@@ -13,4 +13,10 @@
     <ProjectReference Include="..\SourcedSharp\SourcedSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\Entity\" />
+    <Folder Include="API\Entities\" />
+    <Folder Include="API\Attributes\" />
+  </ItemGroup>
+
 </Project>

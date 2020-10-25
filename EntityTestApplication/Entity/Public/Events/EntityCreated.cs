@@ -3,7 +3,7 @@ using SourcedSharp.Core.Messages.Events;
 
 namespace EntityTestApplication.Entity.Public.Events
 {
-    public class EntityCreated : IEvent
+    public class EntityCreated : Event
     {
         public Guid Id;
         public string Name;

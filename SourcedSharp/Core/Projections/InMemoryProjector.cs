@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using RabbitMQ.Client;
 using SourcedSharp.Core.EventStore;
 using SourcedSharp.Core.Messages.Events;
 
@@ -10,12 +12,23 @@ namespace SourcedSharp.Core.Projections
         
         public InMemoryProjector(Guid projectionId, IEventStore eventStore) : base(projectionId, eventStore)
         {
-            Rehydrate();
         }
 
-        private void Rehydrate()
+        public override async Task Initialize()
         {
-            var events = EventStore.GetEvents();
+            await Rehydrate();
+        }
+
+        public static async Task<InMemoryProjector<TProjection>> CreateAsync(Guid projectionId, IEventStore eventStore)
+        {
+            var projector = new InMemoryProjector<TProjection>(projectionId, eventStore);
+            await projector.Initialize();
+            return projector;
+        }
+
+        private async Task Rehydrate()
+        {
+            var events = await EventStore.GetEvents();
             ApplyEvents(events);
         }
     }

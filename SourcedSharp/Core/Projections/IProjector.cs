@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SourcedSharp.Core.Projections
 {
@@ -10,5 +11,6 @@ namespace SourcedSharp.Core.Projections
     {
         Guid ProjectionId { get; set; }
         IProjection Projection { get; set; }
+        public Task Initialize();
     }
 }

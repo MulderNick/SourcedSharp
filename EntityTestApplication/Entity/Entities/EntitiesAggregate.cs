@@ -1,4 +1,5 @@
-﻿using EntityTestApplication.Entity.Entities.Rules;
+﻿using System.Threading.Tasks;
+using EntityTestApplication.Entity.Entities.Rules;
 using EntityTestApplication.Entity.Entities.State;
 using EntityTestApplication.Entity.Public.Commands;
 using EntityTestApplication.Entity.Public.Events;
@@ -8,19 +9,19 @@ namespace EntityTestApplication.Entity.Entities
 {
     public class EntitiesAggregate : Aggregate<EntitiesProjector, EntitiesAggregateRuleVerifier>
     {
-        public EntityCreated Handle(CreateEntity command)
+        public async Task<EntityCreated> Handle(CreateEntity command)
         {
-            HandleCommandFor(command.EntityId);
+            await HandleCommandFor(command.EntityId);
             Verify.EntityNameIsUnique(command.Name);
-            return new EntityCreated(command.EntityId, command.Name);
+            var events = new EntityCreated(command.EntityId, command.Name);
+            return events;
         }
 
-        public EntityDeleted Handle(DeleteEntity command)
+        public async Task<EntityDeleted> Handle(DeleteEntity command)
         {
-            HandleCommandFor(command.EntityId);
+            await HandleCommandFor(command.EntityId);
             Verify.EntityExists(command.EntityId);
-            var @event = new EntityDeleted(command.EntityId);
-            return @event;
+            return new EntityDeleted(command.EntityId);
         }
     }
 }

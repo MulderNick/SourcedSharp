@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace SourcedSharp.Core.Messages.Events
 {
-    public abstract class EventHandler
+    public class MountedEventHandler : IEventHandler
     {
         // ToDo: see if the strings below can be generated during runtime, this might decrease overhead during changes
         private static string _eventSubscriptionInterfaceName = "IApply`1";
         private static string _eventSubscriptionFunctionName = "Apply";
+        private readonly object _mountedInstance;
         private Dictionary<Type, MethodInfo> EventHandlers = new Dictionary<Type, MethodInfo>();
-        int NumberOfEventsHandled { get; set; }
+        public int NumberOfInvokedHandlers { get; set; }
+        public int NumberOfEventsHandled { get; set; }
+        public IEvent LastHandledEvent;
 
-        public EventHandler()
+        public MountedEventHandler(object mountedInstance)
         {
+            _mountedInstance = mountedInstance;
             PrepareHandlers();
         }
 
-        protected void ApplyEvents(IEnumerable<IEvent> events)
+        public void ApplyEvents(IEnumerable<IEvent> events)
         {
             foreach (var @event in events)
             {
@@ -26,20 +31,24 @@ namespace SourcedSharp.Core.Messages.Events
             }
         }
 
-        protected void ApplyEvent(IEvent @event)
+        public void ApplyEvent(IEvent @event)
         {
+            NumberOfEventsHandled++;
+            LastHandledEvent = @event;
+
             var eventType = @event.GetType();
             var isHandlerAvailable = EventHandlers.TryGetValue(eventType, out var eventHandler);
 
             if (isHandlerAvailable)
             {
-                eventHandler.Invoke(this, new[] {@event});
+                NumberOfInvokedHandlers++;
+                eventHandler.Invoke(_mountedInstance, new[] {@event});
             }
         }
 
         protected void PrepareHandlers()
         {
-            var type = this.GetType();
+            var type = _mountedInstance.GetType();
             var methods = type.GetMethods();
             var subscribedEvents = type.GetInterfaces().Where(i => i.Name.Equals(_eventSubscriptionInterfaceName)).Select(i => i.GenericTypeArguments.FirstOrDefault()).ToList();
             foreach (var subscribedEvent in subscribedEvents)

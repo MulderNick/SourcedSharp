@@ -3,7 +3,7 @@ using SourcedSharp.Core.Messages.Events;
 
 namespace EntityTestApplication.Entity.Public.Events
 {
-    public class AttributeRemovedFromEntity : IEvent
+    public class AttributeRemovedFromEntity : Event
     {
         public Guid EntityId;
         public Guid AttributeId;

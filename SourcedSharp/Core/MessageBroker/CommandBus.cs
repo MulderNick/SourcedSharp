@@ -5,13 +5,15 @@ using SourcedSharp.Core.Messages.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using SourcedSharp.Core.MessageHandling;
 
 namespace SourcedSharp.Core.MessageBroker
 {
+    // ToDo: handlers should be stored in solution, not command bus
     public class CommandBus : ICommandBus
     {
-        private object QueueAdapter;
-
         private IDictionary<Type, Type> _handlers = new Dictionary<Type, Type>();
         private IEventStore EventStore;
 
@@ -20,12 +22,12 @@ namespace SourcedSharp.Core.MessageBroker
             EventStore = eventStore;
         }
 
-
-        public void ExecuteCommand(ICommand command)
+        public async Task ExecuteCommand(ICommand command)
         {
-            HandleCommand(command);
+            await HandleCommand(command);
+            return;
         }
-        private void HandleCommand(ICommand command)
+        private async Task HandleCommand(ICommand command)
         {
             var processOperator = new ProcessOperator(EventStore);
 
@@ -35,8 +37,8 @@ namespace SourcedSharp.Core.MessageBroker
             var commandType = command.GetType();
             var handlerRegistered = _handlers.TryGetValue(commandType, out Type aggregate );
             if (handlerRegistered) {
-                processOperator.With(aggregate).Handle(command);
-                processOperator.Commit();
+                var res = await processOperator.With(aggregate).Handle(command);
+                await processOperator.Commit();
             }
         }
 
@@ -46,55 +48,5 @@ namespace SourcedSharp.Core.MessageBroker
             _handlers.Add(typeof(TCommand), handlerType);
         }
 
-    }
-
-    public class ProcessOperator
-    {
-        public Dictionary<Type, AggregateOperator> AggregateOperators = new Dictionary<Type, AggregateOperator>();
-        public IEventStore EventStore;
-        public IEnumerable<IEvent> Events
-        {
-            get => AggregateOperators.Values.Select(ao => ao.Event).ToList();
-        }
-
-        public ProcessOperator(IEventStore eventStore)
-        {
-            EventStore = eventStore;
-        }
-
-        public AggregateOperator With(Type aggregateType)
-        {
-            var aggregateOperator = new AggregateOperator(aggregateType);
-            AggregateOperators.Add(aggregateType, aggregateOperator);
-            return aggregateOperator;
-        }
-
-        public void Commit()
-        {
-            EventStore.Commit(Events);
-        }
-    }
-
-    // ToDo: put handle string in parent class as it is reused
-    public class AggregateOperator
-    {
-        public Type AggregateType;
-        public IAggregate Aggregate;
-        public IEvent Event;
-
-        public AggregateOperator(Type aggregateType)
-        {
-            AggregateType = aggregateType;
-            Aggregate = (IAggregate)Activator.CreateInstance(aggregateType);
-        }
-        public IEvent Handle(ICommand command)
-        {
-            var method = AggregateType.GetMethods().First(m =>
-                m.Name.Equals("Handle") &&
-                m.GetParameters().Length == 1 &&
-                m.GetParameters().Count(p => p.ParameterType.IsEquivalentTo(command.GetType())) == 1);
-            Event = method.Invoke(Aggregate, new[] {command}) as IEvent;
-            return Event;
-        }
     }
 }

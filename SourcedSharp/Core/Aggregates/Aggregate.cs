@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Data;
-using System.Security.Cryptography.X509Certificates;
-using SourcedSharp.Core.Messages.Commands;
+using System.Threading.Tasks;
+using SourcedSharp.Core.Aggregates.Projection;
 using SourcedSharp.Core.Projections;
 
 namespace SourcedSharp.Core.Aggregates
 {
     // ToDo: See if passed generics can be minimized
     public class Aggregate<TProjector, TVerifier> : IAggregate
-        where TProjector : IProjector
+        where TProjector : IAggregateProjector
         where TVerifier : IAggregateRuleVerifier 
     {
         protected TProjector Projector;
         protected TVerifier Verify;
+        protected IAggregateProjection State => Projector.Projection;
 
         private Guid _aggregateId;
-        protected Guid AggregateId
+        public Guid AggregateId
         {
             get
             {
@@ -28,24 +28,27 @@ namespace SourcedSharp.Core.Aggregates
             set
             {
                 _aggregateId = value;
-                InitAggregate();
             }
         }
 
-        private void InitAggregate()
+        public int AggregateVersion => Projector.Projection.AggregateVersion;
+
+
+        private async Task InitAggregate()
         {
-            LoadProjection();
+            await LoadProjection();
             InitVerifier();
         }
 
-        protected void HandleCommandFor(Guid aggregateId)
+        protected async Task HandleCommandFor(Guid aggregateId)
         {
             AggregateId = aggregateId;
+            await InitAggregate();
         }
 
-        public void LoadProjection()
+        public async Task LoadProjection()
         {
-            Projector = ProjectorFactory.GetProjector<TProjector>(AggregateId);
+            Projector = await ProjectorFactory.GetProjector<TProjector>(AggregateId);
         }
 
         public void InitVerifier()
